@@ -7,7 +7,7 @@ type Props = {
 
 function OverTimeForm(props: Props): JSX.Element {
   return (
-    <div>
+    <React.Fragment>
       <Formik 
 		initialValues={{
 			overTime: "",
@@ -22,7 +22,7 @@ function OverTimeForm(props: Props): JSX.Element {
 			<button type="submit">Submit</button>
         </Form>
       </Formik>
-    </div>
+    </React.Fragment>
   );
 }
 
