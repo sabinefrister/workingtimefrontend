@@ -1,8 +1,14 @@
 import React from 'react';
 import { Formik, Field, FieldArray, Form } from 'formik';
 
+
+type Duration = {startTime: string, endTime: string};
+type Durations = {
+  durations: Duration[]
+};
+
 type Props = {
-	sendDurationValue: (duration: any) => void
+	sendDurationValue: (duration: Durations) => void
 }
 
 const initialValues = {

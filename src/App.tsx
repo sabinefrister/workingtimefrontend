@@ -2,7 +2,13 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import OverTimeForm from './OverTimeForm';
 import TimeTracker from './TimeTracker';
+import DueTime from './DueTime';
 
+
+type Duration = {startTime: string, endTime: string};
+type Durations = {
+  durations: Duration[]
+};
 
 function App(): JSX.Element{
   useEffect(()=> {document.title = "My Working Time"}) 
@@ -11,22 +17,21 @@ function App(): JSX.Element{
     setOverTimeValue(overTime);
   }
 
-  const [durationValue, setDurationValue] = useState([{startTime: "00:00", endTime: "00:00"}])
+  const [durationValue, setDurationValue] = useState<Durations>({durations: [{startTime: "00:00", endTime: "00:00"}]})
   const getDurationValue = (duration: any) => {
-    setDurationValue(duration.durations);
+    console.log("duration with getDurationValue")
+    console.log(duration.durations)
+    setDurationValue(duration);
   }
-  
+  console.log("durationValue before return")
+  console.log(durationValue)
   return (
     <div className="App">
       <h1>My Working Time</h1>
+      <p>Overtime: {overTimeValue}</p>
+      <DueTime durations={durationValue.durations}/>
       <OverTimeForm sendOverTimeValue={getOverTimeValue} />
       <TimeTracker sendDurationValue={getDurationValue}/>
-{/*    {durationValue.map((duration, index) => (
-        <div>
-          <p>{duration.startTime}</p>
-          <p>{duration.endTime}</p>
-        </div>
-      ))}*/}
     </div>
   );
 }
